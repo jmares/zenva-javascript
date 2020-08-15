@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>List Filtering Page</title>
+        <style media="screen">
+            body {
+                background-color: #b10dc9;
+                font-family: Arial;
+                padding: 40px;
+            }
+            h1 {
+                color: ghostwhite;
+                text-align: center;
+            }
+            .search-container {
+                display: flex;
+                justify-content: space-around;
+            }
+            #search-bar {
+                width: 80%;
+                height: 40px;
+                font-size: 20px;
+            }
+            .adventures-container {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-around;
+                margin: 40px;
+            }
+            .adventure {
+                width: 120px;
+                padding: 10px;
+                margin-top: 10px;
+                border-radius: 10px;
+                text-align: center;
+                background-color: ghostwhite;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Find Your Local Adventure</h1>
+        <div class="search-container">
+            <input type="text" id="search-bar" name="" value="">
+        </div>
+        <div class="adventures-container">
+            <div class="adventure">Mountain Bike Tour</div>
+            <div class="adventure">Hinterlands Tour</div>
+            <div class="adventure">Sky Diving</div>
+            <div class="adventure">Local Food Festival</div>
+            <div class="adventure">Sunday Markets Tour</div>
+            <div class="adventure">Friday Markets Tour</div>
+            <div class="adventure">Saturday Markets Tour</div>
+            <div class="adventure">Food Tasting Tour</div>
+            <div class="adventure">Snorkelling Tour</div>
+            <div class="adventure">Forest Experience</div>
+            <div class="adventure">Mounting Climbing</div>
+            <div class="adventure">Forest Survival</div>
+            <div class="adventure">Scuba Diving</div>
+            <div class="adventure">Hackathon</div>
+            <div class="adventure">Movie Night</div>
+            <div class="adventure">Stargazing Excursion</div>
+            <div class="adventure">Thursday Markets Tour</div>
+            <div class="adventure">Folk Festival</div>
+        </div>
+        <script>
+            var adventureList = [];
+            var adventures = document.getElementsByClassName('adventure');
+            for (var i = 0; i < adventures.length; i++) {
+                let adv = adventures[i];
+                adventureList.push(adv.innerHTML.toLowerCase());
+            }
+
+            var searchBar = document.getElementById('search-bar');
+            searchBar.addEventListener('keyup', function(event) {
+                let text = searchBar.value;
+                for (var i = 0; i < adventures.length; i++) {
+                    if (adventureList[i].indexOf(text.toLowerCase()) < 0) {
+                        adventures[i].style.display = 'none';
+                    } else {
+                        adventures[i].style.display = 'block';
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

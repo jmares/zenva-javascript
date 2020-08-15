@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Interactive Form Page</title>
+        <style>
+            body {
+                background-color: ghostwhite;
+                margin: 40px;
+                font-family: Arial;
+            }
+            .container {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                width: 200px;
+                height: 300px;
+                padding: 10px;
+                background-color: #00ffaa;
+                border: thick solid #9900ff;
+                border-radius: 10px;
+            }
+            .textInput {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+            #petSelection {
+                margin-top: 10px;
+                display: none;
+            }
+            #saveButton {
+                position: absolute;
+                right: 20px;
+                bottom: 20px;
+                background-color: #9900ff;
+                color: ghostwhite;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <form id="saveForm">
+                Name: <br><input class="textInput" type="text" name="" value=""><br>
+                Address: <br><input type="text" class="textInput" name="" value=""><br>
+                Age: <br><input type="number" class="textInput" name="" value=""><br>
+                Pets: <br><input id="petCheckbox" type="checkbox" name="" value=""><br>
+                <fieldset id="petSelection">
+                    <legend>Choose your pet</legend>
+                    <select class="" name="">
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="bird">Bird</option>
+                        <option value="other">Other</option>
+                    </select>
+                </fieldset>
+                <br><input type="submit" id="saveButton" name="" value="Save">
+            </form>
+        </div>
+        <script>
+        var checkbox = document.getElementById('petCheckbox');
+        var petSelect = document.getElementById('petSelection');
+        var saveForm = document.getElementById('saveForm');
+
+        checkbox.addEventListener('change', function(event) {
+            if (checkbox.checked) {
+                petSelect.style.display = 'block';
+            } else {
+                petSelect.style.display = 'none';
+            }
+        });
+
+        saveForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let nameText = saveForm.elements[0].value;
+            let addressText = saveForm.elements[1].value;
+            let ageText = saveForm.elements[2].value;
+            let hasPets = saveForm.elements[3].checked;
+            let petText = "No pets!";
+            if (nameText == "") {
+                alert('Please enter a name.');
+                return;
+            }
+            if (addressText == "") {
+                alert('Please enter an address.');
+                return;
+            }
+            if (ageText == "") {
+                alert('Please enter an age.');
+                return;
+            }
+            if (hasPets) {
+                 petText = saveForm.elements[5].value;
+            }
+            if (petText == 'dog') {
+                alert('Sorry, our dog capacity is full!');
+                return;
+            }
+            alert("Booking saved! Info:\n" + nameText + "\n" + addressText + "\n" + ageText + "\n" + petText);
+
+        });
+
+        </script>
+    </body>
+</html>

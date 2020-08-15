@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Flashcards Page</title>
+        <style media="screen">
+            body {
+                background: #5f9fff;
+                padding: 40px;
+                font-family: courier;
+            }
+            .container {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-around;
+            }
+            .card {
+                flex: none;
+                margin-top: 10px;
+                padding: 20px;
+                border-radius: 10px;
+                background: ghostwhite;
+            }
+            .card-title, .card-answer {
+                text-align: center;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            .card-button {
+                width: 100%;
+                margin-top: 10px;
+                border: 1px solid #0070bb;
+                border-radius: 5px;
+                background-color: ghostwhite;
+                color: #0070bb;
+            }
+            .card-answer {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <div class=""><img src="img/apple.png" alt=""> </div>
+                <div class="card-title">Apple</div>
+                <button class="card-button">Show</button>
+                <div class="card-answer">Manzana</div>
+            </div>
+            <div class="card">
+                <div class=""><img src="img/dog.png" alt=""> </div>
+                <div class="card-title">Dog</div>
+                <button class="card-button">Show</button>
+                <div class="card-answer">Perro</div>
+            </div>
+            <div class="card">
+                <div class=""><img src="img/city.png" alt=""> </div>
+                <div class="card-title">City</div>
+                <button class="card-button">Show</button>
+                <div class="card-answer">Ciudad</div>
+            </div>
+            <div class="card">
+                <div class=""><img src="img/chair.png" alt=""> </div>
+                <div class="card-title">Chair</div>
+                <button class="card-button">Show</button>
+                <div class="card-answer">Silla</div>
+            </div>
+        </div>
+        <script>
+/*            var firstButton = document.getElementsByClassName('card-button')[0];
+            var firstAnswer = document.getElementsByClassName('card-answer')[0];
+            firstButton.addEventListener('click', function(event) {
+                if (firstButton.innerHTML == 'Show') {
+                    firstAnswer.style.display = "block";
+                    firstButton.innerHTML = 'Hide';
+                } else {
+                    firstAnswer.style.display = "none";
+                    firstButton.innerHTML = 'Show';
+                }
+            });
+*/
+            var cards = document.getElementsByClassName('card');
+            for (let i = 0; i < cards.length; i++) {
+                var button = cards[i].querySelector('.card-button');
+                button.addEventListener('click', function(event) {
+                    let currentButton = event.target;
+                    let currentCard = currentButton.parentNode;
+                    let currentAnswer = currentCard.querySelector('.card-answer');
+                    if (currentButton.innerHTML == 'Show') {
+                        currentAnswer.style.display = "block";
+                        currentButton.innerHTML = 'Hide';
+                    } else {
+                        currentAnswer.style.display = "none";
+                        currentButton.innerHTML = 'Show';
+                    }
+
+                });
+
+            }
+        </script>
+    </body>
+</html>
