@@ -1,7 +1,6 @@
 {
   "name": "04-es6-es9",
   "version": "1.0.0",
-  "description": "",
   "main": "modernjavascript.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,5 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "node-fetch": "^2.6.0"
-  }
+  },
+  "description": ""
 }
