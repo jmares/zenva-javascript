@@ -1,5 +1,6 @@
 var http = require('http');
 var moment = require('moment');
+var pkginfo = require('pkginfo')(module);
 
 function serverCallback(req, res) {
     let begin_time = moment("10:00", "HH:mm");
@@ -19,9 +20,12 @@ function serverCallback(req, res) {
     if (end_diff > 0) {
         message += "Please come back tomorrow. You are " + end_diff + " minutes late.\n";
     }
-    
-    res.writeHead(200, {'Content-Type': 'text/plain'});
+    //let pkginfo = require('pkginfo')(module, 'version', 'author');
+    let pkginfo = require('pkginfo')(module);
+    message += "\n\n" + JSON.stringify(module.exports) + "\n";
+    res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(message);
 }
+console.dir(module.exports);
 
 http.createServer(serverCallback).listen(8080);

@@ -1,15 +1,14 @@
 {
-  "name": "10-nodejs-beginners",
+  "name": "data_aggregator",
   "version": "1.0.0",
   "description": "",
-  "main": "hello.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "moment": "^2.27.0",
-    "pkginfo": "^0.4.1"
+    "request": "^2.88.2"
   }
 }
