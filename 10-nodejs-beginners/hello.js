@@ -1,6 +1,6 @@
 var http = require('http');
 var moment = require('moment');
-var pkginfo = require('pkginfo')(module);
+//var pkginfo = require('pkginfo')(module);
 
 function serverCallback(req, res) {
     let begin_time = moment("10:00", "HH:mm");
