@@ -1,7 +1,12 @@
 const { response } = require('express');
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
+
+// updating express settings
+app.use(bodyParser.urlencoded({ extended: false})); // parse application/x-www-form-urlencoded
+app.use(bodyParser.json()); // parse application/json
 
 app.get('/', (request, response) => {
     response.send('Hello world');
@@ -12,24 +17,60 @@ app.get('/status', (request, response) => {
 });
 
 app.post('/signup', (request, response, next) => {
-    next(new Error('test'));
-    //response.status(200).json({ message: 'ok', status: 200});
+    console.log(request.body);
+    if (!request.body) {
+        response.status(400).json({ message: 'invalid body', status: 400});
+    } else {
+        response.status(200).json({ message: 'ok', status: 200});
+    }
 });
 
 app.post('/login', (request, response) => {
-    response.status(200).json({ message: 'ok', status: 200});
+    console.log(request.body);
+    if (!request.body) {
+        response.status(400).json({ message: 'invalid body', status: 400});
+    } else {
+        response.status(200).json({ message: 'ok', status: 200});
+    }
 });
 
 app.post('/logout', (request, response) => {
-    response.status(200).json({ message: 'ok', status: 200});
+    console.log(request.body);
+    if (!request.body) {
+        response.status(400).json({ message: 'invalid body', status: 400});
+    } else {
+        response.status(200).json({ message: 'ok', status: 200});
+    }
+});
+
+app.post('/token', (request, response) => {
+    console.log(request.body);
+    if (!request.body || !request.body.refreshToken) {
+        response.status(400).json({ message: 'invalid body', status: 400});
+    } else {
+        const { refreshToken } = request.body;
+        response.status(200).json({ message: `refresh token requested for token: ${refreshToken}`, status: 200});
+    }
 });
 
 app.post('/forgot-password', (request, response) => {
-    response.status(200).json({ message: 'ok', status: 200});
+    console.log(request.body);
+    if (!request.body || !request.body.email) {
+        response.status(400).json({ message: 'invalid body', status: 400});
+    } else {
+        const { email } = request.body;
+        response.status(200).json({ message: `forgot password for email: ${email}`, status: 200});
+    }
 });
 
 app.post('/reset-password', (request, response) => {
-    response.status(200).json({ message: 'ok', status: 200});
+    console.log(request.body);
+    if (!request.body || !request.body.email) {
+        response.status(400).json({ message: 'invalid body', status: 400});
+    } else {
+        const { email } = request.body;
+        response.status(200).json({ message: `password reset for  email: ${email}`, status: 200});
+    }
 });
 
 // catch all other routes
