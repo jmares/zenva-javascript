@@ -18,7 +18,14 @@ const mongoConfig = {
     useCreateIndex: true,
     useUnifiedTopology: true
 };
+
+if (process.env.MONGO_USER_NAME && process.env.MONGO.PASSWORD) {
+    mongoConfig.auth = { authSource: 'admin' };
+    mongoConfig.user = process.env.MONGO_USER_NAME;
+    mongoConfig.pass = process.env.MONGO.PASSWORD;
+}
 mongoose.connect(uri, mongoConfig);
+
 mongoose.connection.on('error', (error) => {
     console.log(error);
     process.exit(1);
